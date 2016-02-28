@@ -1,0 +1,4 @@
+renderer:
+  type:                 Cyantree\Mosaic\Renderers\BasicRenderer
+  format:               png
+  outputFolder:         output/images/

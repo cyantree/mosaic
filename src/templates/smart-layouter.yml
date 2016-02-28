@@ -1,0 +1,4 @@
+layouter:
+  type:                   Cyantree\Mosaic\Layouters\SmartLayouter
+  maxWidth:               2048
+  maxHeight:              2048

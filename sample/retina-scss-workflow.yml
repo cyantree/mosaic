@@ -1,0 +1,68 @@
+# This template show an example for generating retina optimized spritesheets.
+# - The template generates 1x and 2x resolutions.
+# - 1x sprites will be scaled down by 50%
+# - Sprites named like *{1x}* will only be parsed by the 1x job and also not scaled. This can be used to provide prescaled images for better quality.
+
+default:
+  # Default settings for all jobs
+
+  # Name of resulting image file
+  name:                   sprites
+
+  # Folders containing source images
+  folders:                sprites/
+
+  # Template configurations to use
+  templates:
+                          - retina-scss-workflow
+
+  # Renderer configuration
+  renderer:
+    outputFolder:         img/
+
+  helpers:
+    # Configuration of scss helper
+    scss:
+      outputFolder:       scss/
+      spritesheetFolder:  ../img/         # Path to image relative from css file
+      classPrefix:        sprites-        # Prefix added to every css class
+
+    retina:
+      steps:              2               # Number of retina steps to use (2x retina = 2, 3x retina = 3)
+
+jobs:
+  # Job specific configurations
+
+  # Job for non-retina devices
+  sprites_1x:
+    name:                 sprites_1x
+
+    helpers:
+      retina:
+        factor:           1
+
+  # Job for 2x retina devices
+  sprites_2x:
+    name:                 sprites_2x
+
+    excludes:
+                          - "*{1x}*"
+
+    helpers:
+      scss:
+        scssPrefix:       sprites-2x-
+      retina:
+        factor:           2
+
+
+sprites:
+  # Sprite specific configurations
+
+  noScale:
+    # Sprites matching this filter won't be scaled. This can be used for specific prescaled images that otherwise would have scaling artifacts
+    filters:
+                          - "*{1x}*"    # Matches to sprites which have "{2x}" in their generated unfiltered name
+
+    helpers:
+      scale:
+        enabled:          false

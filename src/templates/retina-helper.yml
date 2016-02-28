@@ -1,0 +1,3 @@
+helpers:
+  retina:
+    type:               Cyantree\Mosaic\Helpers\RetinaHelper

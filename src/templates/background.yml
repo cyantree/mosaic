@@ -1,0 +1,4 @@
+helpers:
+  background:
+    type:               Cyantree\Mosaic\Helpers\BackgroundHelper
+    color:              ffffff

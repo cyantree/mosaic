@@ -1,0 +1,15 @@
+templates:
+                          - smart-layouter
+                          - basic-renderer
+                          - retina-helper
+                          - scss-helper
+                          - scale-helper
+
+helpers:
+  retina:
+    scssHelper:           scss
+    scaleHelper:          scale
+
+sprites:
+  all:
+    padding:              1

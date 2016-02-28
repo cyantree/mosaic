@@ -1,0 +1,32 @@
+{
+    "name": "cyantree/mosaic",
+    "type": "library",
+    "description": "PHP based spritesheet generator",
+    "keywords": [
+        "Spritesheet"
+    ],
+    "homepage": "https://github.com/cyantree/mosaic",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christoph Schreiber",
+            "email": "mail@cyantree.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Cyantree\\Mosaic\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "symfony/yaml": "^3.0",
+        "cyantree/grout": "^4.7"
+    },
+    "bin": ["bin/mosaic"],
+    "extra": {
+      "branch-alias": {
+        "dev-master": "1.0-dev"
+      }
+    }
+}

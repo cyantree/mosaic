@@ -1,0 +1,7 @@
+helpers:
+  scss:
+    type:               Cyantree\Mosaic\Helpers\ScssHelper
+    outputFolder:       output/styles/
+    outputFile:         ~
+    spritesheetFolder:  ../images/
+    refreshCache:       true
