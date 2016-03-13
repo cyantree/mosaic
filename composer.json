@@ -20,7 +20,7 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "symfony/yaml": "^3.0",
+        "symfony/yaml": "^2.8",
         "cyantree/grout": "^4.7"
     },
     "bin": [
