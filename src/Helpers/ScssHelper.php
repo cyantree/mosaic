@@ -57,7 +57,7 @@ SCSS;
 
             if ($retinaEnabled) {
                 $scssContent .= <<<SCSS
-@media print, (min-device-pixel-ratio: {$retinaThreshold}), (min-resolution: {$retinaThresholdPx}dppx) {
+@media (min-device-pixel-ratio: {$retinaThreshold}), (min-resolution: {$retinaThresholdPx}dpi) {
 
 SCSS;
             }
