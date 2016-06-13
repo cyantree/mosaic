@@ -105,6 +105,7 @@ SCSS;
                 $scssVariablesContent .= '$' . $scssName . '-x: ' . self::cssFormatPx(-$sprite->spriteX) . ';' . chr(10);
                 $scssVariablesContent .= '$' . $scssName . '-y: ' . self::cssFormatPx(-$sprite->spriteY) . ';' . chr(10);
                 $scssVariablesContent .= "\${$scssName}-image: '{$image}';" . chr(10);
+                $scssVariablesContent .= "\${$scssName}-retina-factor: $retinaFactor;" . chr(10);
 
                 $scssVariablesContent .= chr(10);
 
