@@ -1,0 +1,8 @@
+templates:
+                          - smart-layouter
+                          - basic-renderer
+                          - scss-helper
+
+sprites:
+  all:
+    padding:              1
