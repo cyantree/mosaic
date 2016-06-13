@@ -1,7 +1,18 @@
 helpers:
   scss:
     type:               Cyantree\Mosaic\Helpers\ScssHelper
-    outputFolder:       output/styles/
-    outputFile:         ~
-    spritesheetFolder:  ../images/
-    refreshCache:       true
+    outputFolder:       output/styles/  # Per spritesheet
+    outputFile:         ~               # Per spritesheet
+    spritesheetFolder:  ../images/      # Per spritesheet
+    refreshCache:       true            # Per spritesheet
+
+    # Additional options
+#    classPrefix: sprites-     # Per spritesheet
+#    scssPrefix: sprites-      # Per spritesheet
+#    retinaFactor: 1           # Per spritesheet
+#    center: false             # Per sprite
+#    styles:                   # Per sprite
+#      style: value
+#    createClass: true         # Per sprite
+#    createMixin: true         # Per sprite
+#    createVariables: true     # Per sprite
