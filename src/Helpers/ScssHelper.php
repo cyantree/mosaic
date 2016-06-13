@@ -68,9 +68,6 @@ SCSS;
                 $spriteName = $spritePrefix . $sprite->name;
                 $scssName = $scssPrefix . $sprite->name;
 
-                $scssContent .= $indent . '.' . $spriteName . ' {'  . chr(10)
-                      . $indent . $indent . '@include spritesheet-' . $spritesheetName . '();' . chr(10);
-
                 $realSpriteWidth = $sprite->spriteWidth;
                 $realSpriteHeight = $sprite->spriteHeight;
                 $realSpriteX = $sprite->spriteX;
@@ -83,33 +80,44 @@ SCSS;
                     $realSpriteY = $realSpriteY / $retinaFactor;
                 }
 
+                $spriteContent = $indent . $indent . '@include spritesheet-' . $spritesheetName . '();' . chr(10);
+
                 if ($configuration->getBool('center')) {
-                    $scssContent .= $indent . $indent . 'margin-left: ' . self::cssFormatPx(-$realSpriteWidth / $retinaFactor) . ';' . chr(10);
-                    $scssContent .= $indent . $indent . 'margin-top: ' . self::cssFormatPx(-$realSpriteHeight / $retinaFactor) . ';' . chr(10);
+                    $spriteContent .= $indent . $indent . 'margin-left: ' . self::cssFormatPx(-$realSpriteWidth / $retinaFactor) . ';' . chr(10);
+                    $spriteContent .= $indent . $indent . 'margin-top: ' . self::cssFormatPx(-$realSpriteHeight / $retinaFactor) . ';' . chr(10);
                 }
 
-                $scssContent .= $indent . $indent . 'width: ' . self::cssFormatPx($realSpriteWidth) . ';' . chr(10);
-                $scssContent .= $indent . $indent . 'height: ' . self::cssFormatPx($realSpriteHeight) . ';' . chr(10);
-                $scssContent .= $indent . $indent . 'background-position: ' . self::cssFormatPx(-$realSpriteX) . ' ' . self::cssFormatPx(-$realSpriteY) . ';' . chr(10);
+                $spriteContent .= $indent . $indent . 'width: ' . self::cssFormatPx($realSpriteWidth) . ';' . chr(10);
+                $spriteContent .= $indent . $indent . 'height: ' . self::cssFormatPx($realSpriteHeight) . ';' . chr(10);
+                $spriteContent .= $indent . $indent . 'background-position: ' . self::cssFormatPx(-$realSpriteX) . ' ' . self::cssFormatPx(-$realSpriteY) . ';' . chr(10);
 
                 foreach ($configuration->getNode('styles') as $styleName => $styleValue) {
-                    $scssContent .= $indent . $indent . $styleName . ': ' . $styleValue . ';' . chr(10);
+                    $spriteContent .= $indent . $indent . $styleName . ': ' . $styleValue . ';' . chr(10);
                 }
 
-                $scssContent .= $indent . '}' . chr(10);
+                if ($configuration->getBool('createClass', true)) {
+                    // Write class
+                    $scssContent .= $indent . '.' . $spriteName . ' {'  . chr(10) .
+                            $spriteContent .
+                            $indent . '}' . chr(10) . chr(10);
+                }
 
-                if (!$retinaEnabled) {
+                if ($configuration->getBool('createMixin', true)) {
+                    // Write mixin
+                    $scssContent .= $indent . '@mixin ' . $scssName . ' {'  . chr(10) .
+                            $spriteContent .
+                            $indent . '}' . chr(10) . chr(10);
+                }
+
+                if ($configuration->getBool('createVariables', true)) {
                     $scssVariablesContent .= '$' . $scssName . '-width: ' . self::cssFormatPx($sprite->spriteWidth) . ';' . chr(10);
                     $scssVariablesContent .= '$' . $scssName . '-height: ' . self::cssFormatPx($sprite->spriteHeight) . ';' . chr(10);
+                    $scssVariablesContent .= '$' . $scssName . '-x: ' . self::cssFormatPx(-$sprite->spriteX) . ';' . chr(10);
+                    $scssVariablesContent .= '$' . $scssName . '-y: ' . self::cssFormatPx(-$sprite->spriteY) . ';' . chr(10);
+                    $scssVariablesContent .= "\${$scssName}-image: '{$image}';" . chr(10);
+                    $scssVariablesContent .= "\${$scssName}-retina-factor: $retinaFactor;" . chr(10);
+                    $scssVariablesContent .= chr(10);
                 }
-                $scssVariablesContent .= '$' . $scssName . '-x: ' . self::cssFormatPx(-$sprite->spriteX) . ';' . chr(10);
-                $scssVariablesContent .= '$' . $scssName . '-y: ' . self::cssFormatPx(-$sprite->spriteY) . ';' . chr(10);
-                $scssVariablesContent .= "\${$scssName}-image: '{$image}';" . chr(10);
-                $scssVariablesContent .= "\${$scssName}-retina-factor: $retinaFactor;" . chr(10);
-
-                $scssVariablesContent .= chr(10);
-
-                $scssContent .= chr(10);
             }
 
             if ($retinaEnabled) {
