@@ -89,7 +89,10 @@ class Tools
         }
 
         // formats: 1, [1] or [1,2]
-        if (is_object($value)) {
+        if (is_array($value)) {
+            $atbValue = $value;
+        }
+        elseif (is_object($value)) {
             $atbValue = get_object_vars($value);
         }
         else {
@@ -119,7 +122,10 @@ class Tools
         }
 
         // formats: 1, [1], [1,2] or [1,2,3,4]
-        if (is_object($value)) {
+        if (is_array($value)) {
+            $atbValue = $value;
+        }
+        elseif (is_object($value)) {
             $atbValue = get_object_vars($value);
         }
         else {
