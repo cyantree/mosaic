@@ -199,39 +199,41 @@ class Configuration
          */
 
         if (is_string($color)) {
-            // Parse string values
+            $color = [$color];
+        }
 
-            $components = explode(',', $color);
 
-            $color = str_split($components[0], 2);
-            foreach ($color as $i => $v) {
+        // Normalize array values
+        if (is_object($color)) {
+            $color = get_object_vars($color);
+        }
+
+        if (preg_match('!^[a-fA-F0-9]{6,8}$!', $color[0])) {
+            $alpha = null;
+
+            if (isset($color[1])) {
+                $alpha = $color[1];
+            }
+
+            $components = str_split($color[0], 2);
+            foreach ($components as $i => $v) {
                 $color[$i] = hexdec($v);
             }
 
-            if (count($components) > 1) {
-                $component = $components[1];
-
-                if (is_string($component) || is_float($component)) {
-                    $component = round(floatval($component) * 255);
-                }
-
-                $color[] = $component;
+            if ($alpha !== null) {
+                $color[3] = floatval($alpha);
             }
         }
-        else {
-            // Normalize array values
-            $color = get_object_vars($color);
 
-            foreach ($color as $i => $v) {
-                if (is_string($v) || is_float($v)) {
-                    $color[$i] = round(floatval($v) * 255);
-                }
+        foreach ($color as $i => $v) {
+            // Convert float to integer
+            if ($v <= 1) {
+                $color[$i] = round(floatval($v) * 255);
             }
         }
 
         if (!isset($color[3])) {
             // Set default alpha
-
             $color[3] = 255;
         }
 
