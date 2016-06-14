@@ -1,0 +1,11 @@
+helpers:
+  easeljs:
+    type:               Cyantree\Mosaic\Helpers\EaselJsHelper
+
+    # Additional options
+#    framerate:              15                # Per job
+#    outputFolder:           ../easeljs/       # Per job
+#    outputFile:             animations        # Per job
+#    spritesheetFolder:      ../sprites/       # Per job
+#    speed:                  1.5               # Per sprite
+#    center:                 true              # Per sprite
