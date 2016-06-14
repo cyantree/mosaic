@@ -1,4 +1,4 @@
 layouter:
   type:                   Cyantree\Mosaic\Layouters\SmartLayouter
-  maxWidth:               2048
-  maxHeight:              2048
+  maxWidth:               2048                                        # Per job
+  maxHeight:              2048                                        # Per job

@@ -1,15 +1,15 @@
 helpers:
   scss:
     type:               Cyantree\Mosaic\Helpers\ScssHelper
-    outputFolder:       output/styles/  # Per spritesheet
-    outputFile:         ~               # Per spritesheet
-    spritesheetFolder:  ../images/      # Per spritesheet
-    refreshCache:       true            # Per spritesheet
+    outputFolder:       output/styles/  # Per job
+    outputFile:         ~               # Per job
+    spritesheetFolder:  ../images/      # Per job
+    refreshCache:       true            # Per job
 
     # Additional options
-#    classPrefix: sprites-     # Per spritesheet
-#    scssPrefix: sprites-      # Per spritesheet
-#    retinaFactor: 1           # Per spritesheet
+#    classPrefix: sprites-     # Per job
+#    scssPrefix: sprites-      # Per job
+#    retinaFactor: 1           # Per job
 #    center: false             # Per sprite
 #    styles:                   # Per sprite
 #      style: value

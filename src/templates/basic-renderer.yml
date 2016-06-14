@@ -2,3 +2,7 @@ renderer:
   type:                 Cyantree\Mosaic\Renderers\BasicRenderer
   format:               png
   outputFolder:         output/images/
+
+  # Additional options
+#  background:             ff00ff          # Per job
+#  quality:                90              # Per job

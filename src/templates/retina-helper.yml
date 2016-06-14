@@ -1,3 +1,9 @@
 helpers:
   retina:
     type:               Cyantree\Mosaic\Helpers\RetinaHelper
+
+    # Required options
+#    scssHelper:         scss                        # Per job
+#    scaleHelper:        scale                       # Per job
+#    steps:              3                           # Per job
+#    factor:             2                           # Per job

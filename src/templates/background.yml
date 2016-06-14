@@ -1,4 +1,8 @@
 helpers:
   background:
     type:               Cyantree\Mosaic\Helpers\BackgroundHelper
-    color:              ffffff
+    color:              ffffff                                    # Per sprite
+
+    # Additional options
+#    enabled:            true                                      # Per sprite
+#    padding:            [1, 2, 3, 4]                              # Per sprite
