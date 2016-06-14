@@ -3,6 +3,7 @@ namespace Cyantree\Mosaic\Renderers;
 
 use Cyantree\Grout\Tools\FileTools;
 use Cyantree\Grout\Tools\ImageTools;
+use Cyantree\Mosaic\Core\Configuration;
 use Cyantree\Mosaic\Tools;
 use Cyantree\Mosaic\Types\Job;
 use Cyantree\Mosaic\Types\Renderer;
@@ -40,7 +41,7 @@ class BasicRenderer extends Renderer
                 }
             }
 
-            $output = $this->mosaic->getPath($this->configuration->getString('outputFolder'));
+            $output = $this->mosaic->getPath($this->configuration->getString('outputFolder', Configuration::VALUE_REQUIRED));
             $encodedSpritesheetPath = Tools::encodeFilePath($output . '/' . $spritesheet->name . '.' . $format);
 
             FileTools::createDirectory(dirname($encodedSpritesheetPath));

@@ -2,6 +2,7 @@
 namespace Cyantree\Mosaic\Helpers;
 
 use Cyantree\Grout\Tools\FileTools;
+use Cyantree\Mosaic\Core\Configuration;
 use Cyantree\Mosaic\Mosaic;
 use Cyantree\Mosaic\Types\Helper;
 use Cyantree\Grout\Event\Event;
@@ -35,7 +36,7 @@ class EaselJsHelper extends Helper
 
 //            $animationPrefix = $this->_configuration->getString('animationPrefix', $this->_job->configuration->getString('name'));
 
-            $json['images'][] = $this->configuration->getString('spritesheetFolder') . basename($spritesheet->path);
+            $json['images'][] = $this->configuration->getString('spritesheetFolder', Configuration::VALUE_REQUIRED) . basename($spritesheet->path);
 
             foreach ($spritesheet->sprites as $sprite) {
                 $spriteIndex++;
@@ -97,8 +98,8 @@ class EaselJsHelper extends Helper
             }
         }
 
-        $outputFolder = $this->mosaic->getPath($this->configuration->getString('outputFolder'));
-        $outputFileBasename = $this->configuration->getString('outputFile', $this->job->configuration->getString('name'));
+        $outputFolder = $this->mosaic->getPath($this->configuration->getString('outputFolder', Configuration::VALUE_REQUIRED));
+        $outputFileBasename = $this->configuration->getString('outputFile', $this->job->configuration->getString('name', Configuration::VALUE_REQUIRED));
 
         $outputPath = $outputFolder . $outputFileBasename . '.json';
 
