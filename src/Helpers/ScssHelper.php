@@ -46,6 +46,8 @@ class ScssHelper extends Helper
 
 SCSS;
 
+            $mixinsContent = '';
+
             if ($retinaEnabled) {
                 $scssContent .=  $indent . 'background-size: ' . self::cssFormatPx($spritesheet->width / $retinaFactor) . ' auto;' . chr(10);
             }
@@ -104,9 +106,9 @@ SCSS;
 
                 if ($configuration->getBool('createMixin', true)) {
                     // Write mixin
-                    $scssContent .= $indent . '@mixin ' . $scssName . ' {'  . chr(10) .
+                    $mixinsContent .= chr(10) . $indent . '@mixin ' . $scssName . ' {'  . chr(10) .
                             $spriteContent .
-                            $indent . '}' . chr(10) . chr(10);
+                            $indent . '}' . chr(10);
                 }
 
                 if ($configuration->getBool('createVariables', true)) {
@@ -123,6 +125,10 @@ SCSS;
             if ($retinaEnabled) {
                 $scssContent .= ' }' . chr(10);
             }
+
+            if ($mixinsContent) {
+                $scssContent .= chr(10) . $mixinsContent;
+            }
         }
 
         $outputFolder = $this->mosaic->getPath($this->configuration->getString('outputFolder'));
@@ -132,8 +138,8 @@ SCSS;
         $outputPathVariables = $outputFolder . $outputFileBasename . '_variables.scss';
 
         $scssFiles = [
-            $outputPath => $scssContent,
-            $outputPathVariables => $scssVariablesContent
+                $outputPath => $scssContent,
+                $outputPathVariables => $scssVariablesContent
         ];
 
         foreach ($scssFiles as $path => $content) {
